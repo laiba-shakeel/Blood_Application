@@ -3,12 +3,11 @@ import {
   KeyboardAvoidingView,
   Platform,
   TextInput as RNTextInput,
-  useColorScheme,
+  Text,
 } from 'react-native';
-import color from '../../constant/color';
 import { SvgXml } from 'react-native-svg';
-import images from '../../Assets/index';
-
+import color from '../../constant/color';
+import images from '../../Assets';
 const InputBox = ({
   hidePassword = true,
   type,
@@ -17,26 +16,46 @@ const InputBox = ({
   handleOnChange,
   value = '',
   textStyle = {},
+  label,
+  keyboardType = 'default',
   ...props
 }) => {
+  const isDarkMode = true;
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       {type === 'password' && leftIcon && <SvgXml xml={images.profile} />}
+      <Text
+        style={{
+          color: '#51677B',
+          fontSize: 12,
+          fontWeight: '600',
+          fontFamily: 'Lato-Bold',
+          paddingBottom: 8
+        }}>
+        {label}
+      </Text>
       <RNTextInput
         secureTextEntry={type === 'password' && hidePassword}
         style={[
           {
-            color: color.ORANGE,
+            color: '#51677B',
+            fontSize: 16,
+            fontWeight: '400',
             borderBottomColor: color.TEXT_GREY,
             borderWidth: 0,
-            borderBottomWidth: 0.6,
+            backgroundColor: '#F3F6FB',
+            borderRadius: 16,
+            height: 56,
+            paddingHorizontal: 12
           },
           props.style,
         ]}
         value={value}
         placeholder={placeholder}
         onChangeText={handleOnChange}
+        keyboardType={keyboardType}
         placeholderTextColor="#5b6b79"
         autoCapitalize="none"
         autoCorrect={false}

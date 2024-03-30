@@ -1,10 +1,11 @@
 import {StyleSheet} from 'react-native';
+import color from '../../constant/color';
 
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: 'white',
-    borderWidth: 5,
+    // borderWidth: 5,
     borderColor: 'black',
   },
   mainSection: {
@@ -17,12 +18,12 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   mainHeading: {
-    color: '#4F0308',
-    fontSize: 35,
-    fontFamily: 'san-serif',
+    color: color.Text_Red,
+    fontSize: 42,
     textAlign: 'center',
-    fontWeight: '700',
-    letterSpacing:1
+    letterSpacing:1,
+    fontWeight: '800',
+    fontFamily: 'Lato-Black',
   },
   mb:{
       marginBottom: 25,
@@ -40,16 +41,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   qoutation: {
-    fontFamily: 'Roboto',
+    fontWeight: '400',
+    fontFamily: 'Lato-Regular',
     fontSize: 25,
-    fontWeight: '600',
     textAlign: 'center',
-    color: '#4F0308',
+    color: color.Text_Red,
     paddingVertical: 10,
     letterSpacing: 0.9,
   },
   mv: {
-    marginVertical: 50,
+    paddingTop:24,
   },
   input: {
     width: '100%',
