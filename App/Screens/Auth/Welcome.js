@@ -1,10 +1,9 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import styles from './Style';
 import bloodImg from '../../Assets/blood-img.jpg';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import OutlineButton from '../../Components/OutlineButton';
-import {widthPercentageToDP} from 'react-native-responsive-screen';
 import color from '../../constant/color';
 const Welcome = () => {
   const navigation = useNavigation();
@@ -15,7 +14,7 @@ const Welcome = () => {
     <View style={styles.mainContainer}>
       <View style={styles.mainSection}>
         <View style={styles.mb}>
-          <Text style={styles.mainHeading}>Blood Donation</Text>
+          <Text style={styles.mainHeading}>Blood ICU</Text>
         </View>
         <Text style={styles.qoutation}>
           "Donate blood and be the reason for someone's existence"
@@ -23,21 +22,27 @@ const Welcome = () => {
         <View style={styles.imageContainer}>
           <Image source={bloodImg} alt="blood" style={styles.img} />
         </View>
-        <OutlineButton
-          containerStyle={{
-            width: '100%',
-            height: 55,
-            backgroundColor: color.red,
-          }}
+        <TouchableOpacity
           onPress={HandleLogin}
-          textStyle={{
-            fontSize: 25,
-            fontFamily: 'Roboto',
-            letterSpacing: 0.8,
-            fontWeight: '500',
+          style={{
+            height: 56,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 16,
+            backgroundColor: color.red,
           }}>
-          Get Started
-        </OutlineButton>
+          <Text
+            center
+            style={{
+              color: color.WHITE,
+              fontSize: 18,
+              fontFamily: 'Lato-Regular',
+              fontWeight: '500',
+              letterSpacing: 2,
+            }}>
+         Get Started
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
