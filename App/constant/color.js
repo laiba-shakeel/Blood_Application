@@ -5,5 +5,6 @@ export default {
   ORANGE: '#FF6600',
   BLACK: "black",
   red: "#4F0308",
-  Text_Red: "#4F0308"
+  Text_Red: "#4F0308",
+  Gray_Text:'#6e6e6e'
 };
