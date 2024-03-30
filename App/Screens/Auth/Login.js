@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     marginTop: scale(32, true),
   },
   forgotText: {
-    color: '#6e6e6e',
+    color: color.Gray_Text,
     fontSize: 16,
     fontWeight: '400',
     fontFamily: 'Lato-Regular',
