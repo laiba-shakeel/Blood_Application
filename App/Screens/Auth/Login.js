@@ -1,30 +1,43 @@
-import React, { useState } from 'react';
-import { Image, Text, View, StyleSheet, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import {
+  Image,
+  Text,
+  View,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
 import bloodImg from '../../Assets/blood-img.jpg';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import color from '../../constant/color';
 import InputBox from '../../Components/TextInput/index';
 import images from '../../Assets';
 import scale from '../../constant/scale';
 import SvgIcons from '../../Assets/svg';
-import { SvgXml } from 'react-native-svg';
+import {SvgXml} from 'react-native-svg';
 import OrSeparator from '../../Components/OrSeparator';
+import auth from '@react-native-firebase/auth';
 const Login = () => {
   const navigation = useNavigation();
   const [visiblePass, setVisiblePass] = useState(false);
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const HandleLogin = () => {
     navigation.navigate('SignIn');
   };
-  const handleEmailChange = text => {
-    setFormData({ ...formData, email: text });
+  const handleLogin = async () => {
+    try {
+      const userCredential = await auth().signInWithEmailAndPassword(
+        email,
+        password,
+      );
+      const user = userCredential.user;
+      console.log('Logged in user:', user);
+    } catch (error) {
+      console.error('Login error:', error);
+    }
   };
-  const handlePasswordChnage = text => {
-    setFormData({ ...formData, password: text });
-  }
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'position' : ''}>
@@ -40,23 +53,23 @@ const Login = () => {
                 color: '#5b6b79',
               }}
               label={'Email'}
-              textStyle={{ color: '#5b6b79' }}
+              textStyle={{color: '#5b6b79'}}
               placeholder="Enter email address"
               type="email"
-              value={formData.emailemail}
-              onChangeText={handleEmailChange}
+              value={email}
+              onChangeText={text => setEmail(text)}
             />
           </View>
-          <View style={{ paddingTop: 16 }}>
+          <View style={{paddingTop: 16}}>
             <InputBox
-              containerStyle={{ color: '#5b6b79' }}
-              textStyle={{ color: '#5b6b79' }}
+              containerStyle={{color: '#5b6b79'}}
+              textStyle={{color: '#5b6b79'}}
               secureTextEntry={!visiblePass}
               placeholder="Enter Password"
-              value={formData.password}
               label={'Password'}
               type="password"
-              onChangeText={handlePasswordChnage}
+              value={password}
+              onChangeText={text => setPassword(text)}
             />
             <SvgXml
               xml={!visiblePass ? images.eyeClose : images.eyeOpen}
@@ -82,7 +95,7 @@ const Login = () => {
         </TouchableOpacity>
         {/* <ActivityIndicator color={color.red} size={'large'} /> */}
         <TouchableOpacity
-          onPress={HandleLogin}
+          onPress={handleLogin}
           style={{
             height: 56,
             justifyContent: 'center',
@@ -102,10 +115,10 @@ const Login = () => {
             Sign In
           </Text>
         </TouchableOpacity>
-        <View style={{ paddingTop: 24 }}>
+        <View style={{paddingTop: 24}}>
           <OrSeparator />
         </View>
-        <View style={{ gap: 16, paddingTop: 24 }}>
+        <View style={{gap: 16, paddingTop: 24}}>
           <TouchableOpacity
             // onPress={onGoogleLogin}
             style={{
@@ -117,7 +130,7 @@ const Login = () => {
               flexDirection: 'row',
               gap: 8,
             }}>
-            <View style={{ width: 20, height: 20 }}>
+            <View style={{width: 20, height: 20}}>
               <SvgXml xml={SvgIcons.googleIcon} />
             </View>
             <Text
@@ -144,7 +157,7 @@ const Login = () => {
               flexDirection: 'row',
               gap: 8,
             }}>
-            <View style={{ width: 20, height: 20 }}>
+            <View style={{width: 20, height: 20}}>
               <SvgXml xml={SvgIcons.facebookIcon} />
             </View>
             <Text
@@ -162,7 +175,7 @@ const Login = () => {
           </TouchableOpacity>
         </View>
         <TouchableOpacity
-          style={{ justifyContent: 'center', alignItems: 'center' }}
+          style={{justifyContent: 'center', alignItems: 'center'}}
           onPress={HandleLogin}>
           <Text style={styles.forgotText}>Create new account</Text>
         </TouchableOpacity>

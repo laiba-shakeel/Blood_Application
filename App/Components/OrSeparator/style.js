@@ -9,10 +9,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   horizontalSeparator: {
-    height: 0.8,
+    height: 0.5,
     width: '100%',
     position: 'absolute',
-    // borderWidth: 0.2,
+    borderWidth: 0.1,
     backgroundColor: "#C2CDD8",
   },
   text: {
