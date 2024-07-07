@@ -44,8 +44,9 @@ const InputBox = ({
             fontSize: 16,
             fontWeight: '400',
             borderBottomColor: color.TEXT_GREY,
-            borderWidth: 0,
-            backgroundColor: '#F3F6FB',
+            borderWidth: 1,
+            borderColor:'#E9F1FF',
+            backgroundColor: color.WHITE,
             borderRadius: 16,
             height: 56,
             paddingHorizontal: 12
