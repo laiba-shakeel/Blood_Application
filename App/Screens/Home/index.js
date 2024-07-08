@@ -63,7 +63,7 @@ const Home = () => {
           />
         </ScrollView>
       </View>
-      <View style={{flex: 1, marginTop: 15, paddingBottom: 10}}>
+      <View style={{flex: 1, marginTop: 15, paddingBottom: 10}}> 
         <ScrollView
           showsVerticalScrollIndicator
           style={{paddingVertical: 10, marginVertical: 20}}>

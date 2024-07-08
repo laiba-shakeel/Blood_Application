@@ -8,7 +8,7 @@ const ListCard = ({title, task, time, progress , progressImage}) => {
         <Text style={styles.title}>{title}</Text>
       </View>
       <View style={styles.cardBody}>
-        <View style={styles.col}>
+        <View style={styles.col}> 
           <Text style={styles.task}>{task}</Text>
           <Text style={styles.time}>{time} ago</Text>
         </View>
