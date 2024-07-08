@@ -7,8 +7,10 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
-import bloodImg from '../../Assets/blood-img.jpg';
+import googleIcon from '../../Assets/google.png';
+import appleIcon from '../../Assets/path4.png';
 import {useNavigation} from '@react-navigation/native';
 import color from '../../constant/color';
 import InputBox from '../../Components/TextInput/index';
@@ -18,6 +20,8 @@ import SvgIcons from '../../Assets/svg';
 import {SvgXml} from 'react-native-svg';
 import OrSeparator from '../../Components/OrSeparator';
 import auth from '@react-native-firebase/auth';
+import welcomeStyle from './WelcomeStyle';
+import HeaderSection from '../../Components/Header/Header';
 const Login = () => {
   const navigation = useNavigation();
   const [visiblePass, setVisiblePass] = useState(false);
@@ -26,6 +30,7 @@ const Login = () => {
   const HandleLogin = () => {
     navigation.navigate('SignIn');
   };
+
   const handleLogin = async () => {
     try {
       const userCredential = await auth().signInWithEmailAndPassword(
@@ -41,10 +46,14 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'position' : ''}>
-        <View style={styles.logoApp}>
-          <Image source={bloodImg} alt="blood" style={styles.logo} />
-          <Text style={styles.logoText}>Blood ICU</Text>
-          <Text style={styles.MainText}>Welcome back!</Text>
+        <View style={styles.header}>
+          <HeaderSection text="Sign In" />
+        </View>
+        <Text style={styles.qoutation}>Welcome Back</Text>
+        <View style={styles.consize}>
+          <Text style={styles.description}>
+            Please Inter your email address and password for Login
+          </Text>
         </View>
         <View style={styles.inputLogin}>
           <View>
@@ -52,9 +61,8 @@ const Login = () => {
               containerStyle={{
                 color: '#5b6b79',
               }}
-              label={'Email'}
-              textStyle={{color: '#5b6b79'}}
-              placeholder="Enter email address"
+              textStyle={{color: '#756EF3'}}
+              placeholder="albart.einestine@gmail.com"
               type="email"
               value={email}
               onChangeText={text => setEmail(text)}
@@ -65,8 +73,7 @@ const Login = () => {
               containerStyle={{color: '#5b6b79'}}
               textStyle={{color: '#5b6b79'}}
               secureTextEntry={!visiblePass}
-              placeholder="Enter Password"
-              label={'Password'}
+              placeholder="Enter Your Password"
               type="password"
               value={password}
               onChangeText={text => setPassword(text)}
@@ -101,84 +108,39 @@ const Login = () => {
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 16,
-            backgroundColor: color.red,
+            backgroundColor: color.TextColor,
           }}>
           <Text
             center
             style={{
               color: color.WHITE,
-              fontSize: 16,
+              fontSize: 20,
               fontFamily: 'Lato-Regular',
-              fontWeight: '500',
+              fontWeight: '700',
               letterSpacing: 2,
             }}>
             Sign In
           </Text>
         </TouchableOpacity>
-        <View style={{paddingTop: 24}}>
-          <OrSeparator />
+        <View style={styles.SocialAppDiv}>
+          <Text style={styles.centerGray}>Signin with</Text>
+          <View style={styles.appDiv}>
+            <TouchableOpacity style={styles.button}>
+              <Image source={googleIcon} alt="blood" style={styles.img} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <Image source={appleIcon} alt="blood" style={styles.img} />
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={{gap: 16, paddingTop: 24}}>
-          <TouchableOpacity
-            // onPress={onGoogleLogin}
-            style={{
-              height: 56,
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 16,
-              backgroundColor: color.red,
-              flexDirection: 'row',
-              gap: 8,
-            }}>
-            <View style={{width: 20, height: 20}}>
-              <SvgXml xml={SvgIcons.googleIcon} />
-            </View>
-            <Text
-              center
-              style={{
-                color: color.WHITE,
-                fontSize: 16,
-                fontFamily: 'Lato-Regular',
-                fontWeight: '500',
-                letterSpacing: 2,
-                // width: 210,
-              }}>
-              Continue via Google
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            // onPress={onFacebookLogin}
-            style={{
-              height: 56,
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 16,
-              backgroundColor: color.red,
-              flexDirection: 'row',
-              gap: 8,
-            }}>
-            <View style={{width: 20, height: 20}}>
-              <SvgXml xml={SvgIcons.facebookIcon} />
-            </View>
-            <Text
-              center
-              style={{
-                color: color.WHITE,
-                fontSize: 16,
-                fontFamily: 'Lato-Regular',
-                fontWeight: '500',
-                letterSpacing: 2,
-                // width: 210,
-              }}>
-              Continue via Facebook
-            </Text>
-          </TouchableOpacity>
+        <View style={styles.footer}>
+          <Text style={styles.centerGray}>
+            Not Registrar Yet?{' '}
+            <Pressable onPress={HandleLogin}>
+              <Text style={styles.space}>Sign Up</Text>
+            </Pressable>
+          </Text>
         </View>
-        <TouchableOpacity
-          style={{justifyContent: 'center', alignItems: 'center'}}
-          onPress={HandleLogin}>
-          <Text style={styles.forgotText}>Create new account</Text>
-        </TouchableOpacity>
       </KeyboardAvoidingView>
     </View>
   );
@@ -187,20 +149,68 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: scale(15),
+    paddingHorizontal: scale(25),
     backgroundColor: color.WHITE,
     paddingTop: scale(16),
   },
-  logoApp: {
-    alignSelf: 'center',
+  img: {
+    width: 100,
+    height: 100,
+  },
+  space: {
+    color: color.TextColor,
+    fontWeight:'700',
+    textAlign:'center',
+  },
+  SocialAppDiv: {
+    // borderWidth: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 25,
+  },
+  button: {
+    borderWidth: 1,
+    borderColor: color.BACKGROUND_LIGHT,
+    width: 65,
+    gap: 5,
+    // flex:1,
+    height: 65,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  logoText: {
-    color: color.Text_Red,
-    fontSize: 24,
-    fontWeight: '800',
-    fontFamily: 'Lato-Black',
-    paddingTop: 8,
+  footer: {
+    // borderWidth: 1,
+    marginTop: 35,
+  },
+  img: {
+    width: 25,
+    height: 28,
+  },
+  consize: {
+    width: 220,
+  },
+  appDiv: {
+    // borderWidth: 1,
+    paddingTop: 25,
+    flexDirection: 'row',
+    gap: 15,
+  },
+  description: {
+    color: color.TEXT_GREY,
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 24,
+  },
+  qoutation: {
+    fontWeight: '700',
+    fontFamily: 'Lato-Regular',
+    fontSize: 25,
+    color: color.BLACK,
+    paddingTop: 30,
+    paddingBottom: 5,
   },
   MainText: {
     fontSize: 40,
@@ -208,6 +218,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Black',
     color: color.Text_Red,
     paddingTop: 24,
+  },
+  centerGray: {
+    color: color.TEXT_GREY,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontWeight: '700',
+    fontSize: 14,
+    textAlign: 'center',
   },
   icons: {
     height: '100%',
@@ -218,7 +236,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   inputLogin: {
-    marginTop: scale(24, true),
+    marginTop: scale(15, true),
   },
   input: {
     borderWidth: 0.2,
@@ -237,12 +255,14 @@ const styles = StyleSheet.create({
     marginTop: scale(32, true),
   },
   forgotText: {
-    color: color.Gray_Text,
-    fontSize: 16,
+    color: color.BLACK,
+    fontSize: 14,
     fontWeight: '400',
     fontFamily: 'Lato-Regular',
-    paddingVertical: 20,
-    paddingBottom: 18,
+    paddingTop: 10,
+    paddingBottom: 35,
+    left: 170,
+    // paddingBottom: 18,
   },
   signUp: {
     alignSelf: 'center',
