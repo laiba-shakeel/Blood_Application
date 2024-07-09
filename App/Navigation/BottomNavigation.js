@@ -1,25 +1,14 @@
-// App/Navigation/BottomTabNavigator.js
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import Home from '../Screens/Home';
 import {SvgXml} from 'react-native-svg';
 import SvgIcons from '../Assets/svg';
 import ProgressScreen from '../Screens/ProgressScreen';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AddTaskScreen from '../Screens/AddTaskScreen';
 import ChatScreen from '../Screens/Chat';
+import Profile from '../Screens/Profile';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
-
-const ProfileScreen = () => (
-  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text>Profile Screen</Text>
-  </View>
-);
-
 
 const BottomTabNavigator = () => {
   return (
@@ -65,7 +54,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen name="Chat" component={ChatScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 };

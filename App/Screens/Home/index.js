@@ -124,8 +124,6 @@ const Home = () => {
       </View>
       <View
         style={{
-          // borderWidth: 1,
-          // borderColor: 'black',
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',

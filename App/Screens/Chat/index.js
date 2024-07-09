@@ -6,47 +6,35 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {SvgXml} from 'react-native-svg';
-import ChatCard from '../../Components/Card/ChatCard'; 
-import SvgIcons from '../../Assets/svg';
+import ChatCard from '../../Components/Card/ChatCard';
 import CustomizeHeader from '../../Components/Header/HomeHeader';
 import arrow from '../../Assets/Backarrow.png';
-import plus from '../../Assets/plus.jpg'
-import { useNavigation } from '@react-navigation/native';
-import { dummyData } from '../../Utils/DummyData';
-const DataList = ({data}) => (
-  <View style={styles.dataList}>
-    {data.map(item => (
-      <ChatCard key={item.id} icon={item.icon} text={item.text} />
-    ))}
-  </View>
-);
+import plus from '../../Assets/plus.jpg';
+import {useNavigation} from '@react-navigation/native';
+import {dummyData} from '../../Utils/DummyData';
 
 const ChatScreen = () => {
-  const [searchText, setSearchText] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const navigation = useNavigation();
   const HandleGoBack = () => {
     navigation.goBack('');
   };
-  const filteredData = searchText
-    ? dummyData.filter(item =>
-        item.text.toLowerCase().includes(searchText.toLowerCase()),
-      )
-    : dummyData;
-
+  const handleChatPress = (item) => {
+    console.log("Chat pressed:", item);
+    // Navigate or handle chat item press
+  };
   return (
-       <View style={styles.container}>
-       <CustomizeHeader
-          left
-          center
-          right
-          text="Chat"
-          leftImage={arrow}
-          rightImage={plus}
-          onLeftPress={HandleGoBack}
-          onRightPress={HandleGoBack}
-        />
+    <View style={styles.container}>
+      <CustomizeHeader
+        left
+        center
+        right
+        text="Chat"
+        leftImage={arrow}
+        rightImage={plus}
+        onLeftPress={HandleGoBack}
+        onRightPress={HandleGoBack}
+      />
       <View style={styles.header}>
         <TextInput
           style={styles.searchBar}
@@ -55,38 +43,29 @@ const ChatScreen = () => {
           onChangeText={setSearchQuery}
         />
       </View>
-      <DataList data={filteredData} />
+      <View style={styles.dataList}>
+        {dummyData.map(item => (
+          <TouchableOpacity key={item.id} onPress={() => handleChatPress(item)}>
+            <ChatCard img={item.icon} title={item.text} hour="10:00 AM" />
+          </TouchableOpacity>
+        ))}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 20,
-        paddingHorizontal:20,
-        backgroundColor: '#fff',
-      },
-      header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        // marginBottom: 10,
-        marginVertical:25
-      },
-  searchBar: {
+  container: {
+    flex: 1,
+    paddingTop: 20,
+    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+  },
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 10,
-  },
-  searchInput: {
-    flex: 1,
-    marginLeft: 20,
-  },
-  dataList: {
-    marginTop: 10,
+    justifyContent: 'space-between',
+    marginVertical: 25,
   },
   searchBar: {
     flex: 1,
@@ -95,6 +74,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 15,
     fontSize: 16,
+  },
+  dataList: {
+    marginTop: 10,
+    paddingHorizontal: 8,
   },
 });
 

@@ -105,7 +105,7 @@ const SvgIcons = {
 <g id="SVGRepo_iconCarrier"> <g clip-path="url(#2d2d2d2dclip0_15_152)"> <rect width="24" height="24" fill="white"/> <circle cx="10.5" cy="10.5" r="6.5" stroke="#2d2d2d2d" stroke-linejoin="round"/> <path d="M19.6464 20.3536C19.8417 20.5488 20.1583 20.5488 20.3536 20.3536C20.5488 20.1583 20.5488 19.8417 20.3536 19.6464L19.6464 20.3536ZM20.3536 19.6464L15.3536 14.6464L14.6464 15.3536L19.6464 20.3536L20.3536 19.6464Z" fill="#2d2d2d2d"/> </g> <defs> <clipPath id="clip0_15_152"> <rect width="24" height="24" fill="white"/> </clipPath> </defs> </g>
 
 </svg>`,
-  camera: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  camera: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Camera">
 <g id="Camera_2">
 <path id="Stroke 1" fill-rule="evenodd" clip-rule="evenodd" d="M15.0402 4.05132C16.0502 4.45332 16.3592 5.85332 16.7722 6.30332C17.1852 6.75332 17.7762 6.90632 18.1032 6.90632C19.8412 6.90632 21.2502 8.31532 21.2502 10.0523V15.8473C21.2502 18.1773 19.3602 20.0673 17.0302 20.0673H6.97024C4.63924 20.0673 2.75024 18.1773 2.75024 15.8473V10.0523C2.75024 8.31532 4.15924 6.90632 5.89724 6.90632C6.22324 6.90632 6.81424 6.75332 7.22824 6.30332C7.64124 5.85332 7.94924 4.45332 8.95924 4.05132C9.97024 3.64932 14.0302 3.64932 15.0402 4.05132Z" stroke="#848A94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
