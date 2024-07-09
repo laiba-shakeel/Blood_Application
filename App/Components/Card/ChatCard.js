@@ -1,30 +1,60 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import color from '../../constant/color';
-import { SvgXml } from 'react-native-svg';
+import {SvgXml} from 'react-native-svg';
 import SvgIcons from '../../Assets/svg';
+import {launchCamera} from 'react-native-image-picker';
+const ChatCard = ({img, title, hour}) => {
+  const handleCameraPress = () => {
+    const options = {
+      mediaType: 'photo',
+      cameraType: 'back',
+    };
+    launchCamera(options, response => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.errorCode) {
+        console.log('ImagePicker Error: ', response.errorMessage);
+      } else {
+        console.log('Image URI: ', response.assets[0].uri);
+        // Do something with the captured image URI
+      }
+    });
+  };
 
-const ChatCard = ({task}) => {
   return (
     <View style={[styles.card, {backgroundColor: color.WHITE}]}>
       <View
         style={{
-          borderWidth: 1,
           flexDirection: 'row',
-          justifyContent: 'space-between',
+          gap: 10,
           alignItems: 'center',
+          justifyContent: 'center',
         }}>
-        <Image  />
+        <Image
+          source={img}
+          style={{width: 40, height: 40, borderWidth: 1, borderRadius: 25}}
+        />
         <View
           style={{
-            borderWidth: 1,
+            gap: 5,
             flexDirection: 'column',
             justifyContent: 'center',
           }}>
-          <Text></Text>
-          <Text></Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.descp}>{hour}</Text>
         </View>
-        <SvgXml xml={SvgIcons.camera}/>
+        <View
+          style={{
+            paddingRight: 15,
+            justifyContent: 'flex-end',
+            flex: 1,
+            alignItems: 'flex-end',
+          }}>
+          <TouchableOpacity onPress={handleCameraPress}>
+            <SvgXml xml={SvgIcons.camera} />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -33,18 +63,25 @@ const ChatCard = ({task}) => {
 const styles = StyleSheet.create({
   card: {
     borderRadius: 10,
-    padding: 15,
-    marginVertical: 10,
-    borderWidth: 1,
+    padding: 10,
+    marginVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E9F1FF',
   },
   time: {
     fontSize: 16,
     color: '#fff',
   },
   title: {
-    fontSize: 20,
-    color: '#fff',
-    marginTop: 5,
+    fontSize: 14,
+    color: '#002055',
+    fontWeight: '500',
+    // marginTop: 5,
+  },
+  descp: {
+    fontSize: 11,
+    lineHeight: 11,
+    color: '#848A94',
   },
   people: {
     flexDirection: 'row',

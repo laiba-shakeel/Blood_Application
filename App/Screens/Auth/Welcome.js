@@ -2,7 +2,6 @@ import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import styles from './Style';
 import heroImage from '../../Assets/banner-purple.png';
-import group from '../../Assets/group.png';
 import {useNavigation} from '@react-navigation/native';
 import OutlineButton from '../../Components/OutlineButton';
 import color from '../../constant/color';

@@ -11,7 +11,6 @@ import welcomeStyle from './WelcomeStyle';
 import bannerImage from '../../Assets/bannerthree.png';
 import leftFowrwardImage from '../../Assets/rectangle.png';
 import arrowImage from '../../Assets/arrow.png';
-import group from '../../Assets/group.png';
 import {useNavigation} from '@react-navigation/native';
 import OutlineButton from '../../Components/OutlineButton';
 import color from '../../constant/color';
