@@ -27,6 +27,7 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     color: color.BLACK,
+    letterSpacing:1
   },
   titleContainer: {
     // borderWidth:1,

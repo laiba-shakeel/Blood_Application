@@ -1,19 +1,13 @@
 import React from 'react';
 import style from './style';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
-import Category from '../../Assets/Category.png';
-import Notification from '../../Assets/Notifications.png';
-import {useNavigation} from '@react-navigation/native';
-const CustomizeHeader = ({left, center, right, text}) => {
-  const navigation = useNavigation();
-  const HandleGoBack = () => {
-    navigation.goBack('');
-  };
+
+const CustomizeHeader = ({left, center, right, text, leftImage, rightImage, onLeftPress, onRightPress}) => {
   return (
     <View style={style.container}>
       {left && (
-        <TouchableOpacity onPress={HandleGoBack} style={style.button}>
-          <Image source={Category} alt="blood" style={style.img} />
+        <TouchableOpacity onPress={onLeftPress} style={style.button}>
+          <Image source={leftImage} alt="left" style={style.img} />
         </TouchableOpacity>
       )}
       {center && (
@@ -22,8 +16,8 @@ const CustomizeHeader = ({left, center, right, text}) => {
         </View>
       )}
       {right && (
-        <TouchableOpacity onPress={HandleGoBack} style={style.button}>
-          <Image source={Notification} alt="blood" style={style.img} />
+        <TouchableOpacity onPress={onRightPress} style={style.button}>
+          <Image source={rightImage} alt="right" style={style.img} />
         </TouchableOpacity>
       )}
     </View>
@@ -31,3 +25,5 @@ const CustomizeHeader = ({left, center, right, text}) => {
 };
 
 export default CustomizeHeader;
+
+
