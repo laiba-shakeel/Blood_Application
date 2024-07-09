@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Image,
   Text,
@@ -11,13 +11,13 @@ import {
 } from 'react-native';
 import googleIcon from '../../Assets/google.png';
 import appleIcon from '../../Assets/path4.png';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import color from '../../constant/color';
 import InputBox from '../../Components/TextInput/index';
 import images from '../../Assets';
 import scale from '../../constant/scale';
 import SvgIcons from '../../Assets/svg';
-import {SvgXml} from 'react-native-svg';
+import { SvgXml } from 'react-native-svg';
 import OrSeparator from '../../Components/OrSeparator';
 import auth from '@react-native-firebase/auth';
 import welcomeStyle from './WelcomeStyle';
@@ -31,17 +31,8 @@ const Login = () => {
     navigation.navigate('SignIn');
   };
 
-  const handleLogin = async () => {
-    try {
-      const userCredential = await auth().signInWithEmailAndPassword(
-        email,
-        password,
-      );
-      const user = userCredential.user;
-      console.log('Logged in user:', user);
-    } catch (error) {
-      console.error('Login error:', error);
-    }
+  const handleLogin = () => {
+    navigation.replace('Home')
   };
   return (
     <View style={styles.container}>
@@ -61,17 +52,17 @@ const Login = () => {
               containerStyle={{
                 color: '#5b6b79',
               }}
-              textStyle={{color: '#756EF3'}}
+              textStyle={{ color: '#756EF3' }}
               placeholder="albart.einestine@gmail.com"
               type="email"
               value={email}
               onChangeText={text => setEmail(text)}
             />
           </View>
-          <View style={{paddingTop: 16}}>
+          <View style={{ paddingTop: 16 }}>
             <InputBox
-              containerStyle={{color: '#5b6b79'}}
-              textStyle={{color: '#5b6b79'}}
+              containerStyle={{ color: '#5b6b79' }}
+              textStyle={{ color: '#5b6b79' }}
               secureTextEntry={!visiblePass}
               placeholder="Enter Your Password"
               type="password"
@@ -159,8 +150,8 @@ const styles = StyleSheet.create({
   },
   space: {
     color: color.TextColor,
-    fontWeight:'700',
-    textAlign:'center',
+    fontWeight: '700',
+    textAlign: 'center',
   },
   SocialAppDiv: {
     // borderWidth: 1,
